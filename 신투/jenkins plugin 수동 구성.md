@@ -128,4 +128,12 @@ jenkins 서버 접속 후 Dashboard → Manage Jenkins → Plugins → Advanced 
 
 ### 4. jenkins 재기동
 
+‘설치가 끝나고 실행중인 작업이 없으면 Jenkins 재시작’ 클릭
+
 ![Untitled 4](https://github.com/jslim1995/insideinfo-vault/assets/100335118/168be03d-ee07-4c51-93bc-ff8ce5cb2409)
+
+### 5. vault plugin 설치 확인
+
+Dashboard → Jenkins 관리 → Plugins → Installed plugins에서 vault 검색
+
+![제목 없음](https://github.com/jslim1995/insideinfo-vault/assets/100335118/964795bc-e824-427e-957a-48e4d6b0e329)
