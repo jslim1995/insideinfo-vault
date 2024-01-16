@@ -31,7 +31,7 @@ deletion_time      n/a
 destroyed          false
 version            1
 
-# ssh otp policy 생성
+# KV read policy 생성
 $ vault policy write -ns=jenkins kv_jenkins_policy -<<EOF
 path "kv/data/secret" {
   capabilities = ["read"]
@@ -41,6 +41,7 @@ Success! Uploaded policy: kv_jenkins_policy
 ```
 
 ### Entity 생성 및 Token 발급
+최소한의 Vault 권한을 부여한 Vault Entity로 Token을 발급 받고, Jenkins Credentials에 등록하여 사용.
 
 ```bash
 # Entity 생성
@@ -134,6 +135,10 @@ Available plugins 탭에서 HashiCorp vault 설치 후 Jenkins 재기동
 
 ## Credentials 추가
 
+Jenkins Credentials는 Jenkins Pipeline에서 Vault Entity Token을 사용하기 위해 구성
+
+Vault의 최소 권한을 부여하기 위해 Jenkins Pipeline별로 다른 Vault Entity Token 사용 권장
+
 ### Credentials 목록
 
 Jenkins 관리 - Security - Credentials
@@ -152,7 +157,7 @@ Jenkins 관리 - Security - Credentials
 >
 > Namespace : Vault Namespace 명 (현재 Jenkins 측 이슈로 적용 불가)
 >
-> ID : `vault-jenkins-app_jenkins-token` (Jenkins에서 사용하는 Credential 구분 ID) - Vault Token관리를 위해 네이밍 규칙 필요 ‘`vault-<NAMESPACE>-<ENTITY_NAME>-token`’ 
+> ID : `vault-jenkins-app_jenkins-token` (Jenkins에서 사용하는 Credential 구분 ID) - Vault Entity Token관리를 위해 네이밍 규칙 필요 ex) `vault-<NAMESPACE>-<ENTITY_NAME>-token`
 
 ### 생성된 Credentials
 
