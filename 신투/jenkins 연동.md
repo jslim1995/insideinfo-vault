@@ -41,7 +41,10 @@ Success! Uploaded policy: kv_jenkins_policy
 ```
 
 ### Entity 생성 및 Token 발급
-최소한의 Vault 권한을 부여한 Vault Entity로 Token을 발급 받고, Jenkins Credentials에 등록하여 사용.
+
+최소한의 Vault 권한을 부여한 Vault Token을 발급 받고, Jenkins Credentials에 등록하여 사용.
+
+Jenkins Credentials를 추가 등록 시 Entity를 추가 생성하여 Token 발급
 
 ```bash
 # Entity 생성
@@ -75,7 +78,7 @@ token_period=10d \
 token_bound_cidrs=35.183.111.12/32
 Success! Data written to: auth/token/roles/app_jenkins_token_role
 
-# Token 발급
+# Token 발급 - 발급된 토큰은 Jenkins Credential에 등록하여 사용
 $ vault token create -ns=jenkins \
 -role=app_jenkins_token_role \
 -entity-alias=app_jenkins \
@@ -125,63 +128,69 @@ type                           service
 
 jenkins 관리 - System Configuration - Plugins
 
-![Untitled](https://github.com/jslim1995/insideinfo-vault/assets/100335118/13a81cd6-d872-45f7-8540-3ee24bb845ba)
+![Untitled](https://github.com/jslim1995/insideinfo-vault/assets/100335118/63e2a544-a911-442f-87dc-cb55b977abd6)
 
 ### Vault Plugin 설치
 
 Available plugins 탭에서 HashiCorp vault 설치 후 Jenkins 재기동
 
-![Untitled 1](https://github.com/jslim1995/insideinfo-vault/assets/100335118/908f0ae2-afcf-4baa-a551-43f708577bbe)
+![Untitled 1](https://github.com/jslim1995/insideinfo-vault/assets/100335118/4c0fd4f6-d79b-460f-8324-049d548b59f0)
 
 ## Credentials 추가
 
-Jenkins Credentials는 Jenkins Pipeline에서 Vault Entity Token을 사용하기 위해 구성
+Jenkins Credentials는 Jenkins Pipeline에서 Vault Token을 사용하기 위해 구성
 
-Vault의 최소 권한을 부여하기 위해 Jenkins Pipeline별로 다른 Vault Entity Token 사용 권장
+Vault Token에 최소 권한을 부여하기 위해 Jenkins Pipeline별로 다른 Vault Token이 적용된 Jenkins Credentials 사용 권장
 
 ### Credentials 목록
 
 Jenkins 관리 - Security - Credentials
 
-![Untitled 2](https://github.com/jslim1995/insideinfo-vault/assets/100335118/08cc7892-08f9-4191-8424-cfe6e1b75a43)
+![Untitled 2](https://github.com/jslim1995/insideinfo-vault/assets/100335118/cdbcf485-5054-47ee-a35c-2a5cb1021d25)
 
 ### add Credentials
 
-![Untitled 3](https://github.com/jslim1995/insideinfo-vault/assets/100335118/0a2d866c-7380-4f20-8213-7c866100c9fb)
+![Untitled 3](https://github.com/jslim1995/insideinfo-vault/assets/100335118/a4b91694-1034-4300-a765-b13458b020ef)
 
-![Untitled 4](https://github.com/jslim1995/insideinfo-vault/assets/100335118/b0e0d386-1094-452e-b943-f853ef5d858f)
+![Untitled 4](https://github.com/jslim1995/insideinfo-vault/assets/100335118/c71063f1-4b87-4ebe-9760-693eed2c70ab)
 
 > Kind : `Vault Token Credential`
 >
-> Token : kv 조회 권한이 있는 Vault Token
+> Token : Pipeline에서 사용 할 최소의 권한이 부여된 Vault Token
 >
 > Namespace : Vault Namespace 명 (현재 Jenkins 측 이슈로 적용 불가)
 >
-> ID : `vault-jenkins-app_jenkins-token` (Jenkins에서 사용하는 Credential 구분 ID) - Vault Entity Token관리를 위해 네이밍 규칙 필요 ex) `vault-<NAMESPACE>-<ENTITY_NAME>-token`
+> ID : `vault-jenkins-app_jenkins-token` (Jenkins에서 사용하는 Credential 구분 ID) - Vault Token관리를 위해 네이밍 규칙 필요 ex) `vault-<NAMESPACE>-<ENTITY_NAME>-token`
 
 ### 생성된 Credentials
 
 생성된 ID(`vault-jenkins-app_jenkins-token`) 확인
 
-![Untitled 5](https://github.com/jslim1995/insideinfo-vault/assets/100335118/87d47dff-d56f-4601-9318-dc6a6b088b17)
+해당 Credential ID는 Pipeline에서 호출하여 사용
+
+![Untitled 5](https://github.com/jslim1995/insideinfo-vault/assets/100335118/3963536a-41ae-44fc-a7fe-164b0ad91a47)
 
 ## System 설정
 
 jenkins 관리 - System Configuration - System
 
-![Untitled 6](https://github.com/jslim1995/insideinfo-vault/assets/100335118/2c0c597e-a1a6-4776-8373-af4b5727bae3)
+![Untitled 6](https://github.com/jslim1995/insideinfo-vault/assets/100335118/5bc6a6c8-ec20-4b9a-8762-0f9a5f758c9b)
 
 ### Vault Plugin Global 설정
 
-![Untitled 7](https://github.com/jslim1995/insideinfo-vault/assets/100335118/6e6f5274-808c-4de3-894a-4e5972a04b75)
+Vault Plugin Global 설정 값 미 지정 시 Script에서 변수 지정 필요
 
-Vault URL : `http://15.222.62.110:8200`
+Vault Credential, Vault Namespace는 Pipeline 별로 다른 값을 사용할 수 있도록 미 지정
 
-Vault Credential : Script의 configuration에서 구성
+![Untitled 7](https://github.com/jslim1995/insideinfo-vault/assets/100335118/41eaed5d-9fb1-4358-9c3e-ed1d0801eb8f)
 
-Vault Namespace : Script의 configuration에서 구성
-
-K/V Engine Version : 2 (기본 값)
+> Vault URL : `http://15.222.62.110:8200`
+>
+> Vault Credential : 미 지정 (Pipeline - Script의 configuration에서 구성)
+>
+> Vault Namespace : 미 지정 (Pipeline - Script의 configuration에서 구성)
+>
+> K/V Engine Version : 2 (기본 값)
 
 설정 후 저장
 
@@ -189,34 +198,62 @@ K/V Engine Version : 2 (기본 값)
 
 새로운 Item 클릭
 
-![Untitled 8](https://github.com/jslim1995/insideinfo-vault/assets/100335118/71752f59-3c61-4184-8937-836a9a878dd1)
+![Untitled 8](https://github.com/jslim1995/insideinfo-vault/assets/100335118/fedc8bc4-6262-4cd1-b3e9-4383281499a4)
 
 ### Pipeline 생성
 
 item name 지정 후 Pipeline 선택
 
-![Untitled 9](https://github.com/jslim1995/insideinfo-vault/assets/100335118/87043a45-0634-4d07-810e-7d3d902f40eb)
+![Untitled 9](https://github.com/jslim1995/insideinfo-vault/assets/100335118/a42da33e-3d8a-444e-9bc0-1a5118530512)
 
 ### Script 작성 (Vault Plugin 사용)
 
 사용 예시 : [https://plugins.jenkins.io/hashicorp-vault-plugin/#plugin-content-usage-via-jenkinsfile](https://plugins.jenkins.io/hashicorp-vault-plugin/#plugin-content-usage-via-jenkinsfile)
 
+```groovy
+// optional configuration, if you do not provide this the next higher configuration
+// (e.g. folder or global) will be used
+def configuration = [vaultUrl: 'http://my-very-other-vault-url.com',
+                     vaultCredentialId: 'my-vault-cred-id',
+                     engineVersion: 1]
+
+// define the secrets and the env variables
+// engine version can be defined on secret, job, folder or global.
+// the default is engine version 2 unless otherwise specified globally.
+def secrets = [
+    [path: 'secret/testing', engineVersion: 1, secretValues: [
+        [envVar: 'testing', vaultKey: 'value_one'],
+        [envVar: 'testing_again', vaultKey: 'value_two']]],
+    [path: 'secret/another_test', engineVersion: 2, secretValues: [
+        [vaultKey: 'another_test']]]
+]
+
+// inside this block your credentials will be available as env variables
+withVault([configuration: configuration, vaultSecrets: secrets]) {
+    sh 'echo $testing'
+    sh 'echo $testing_again'
+    sh 'echo $another_test'
+}
+```
+
 사용 가능한 변수 목록 : [https://www.jenkins.io/doc/pipeline/steps/hashicorp-vault-plugin/](https://www.jenkins.io/doc/pipeline/steps/hashicorp-vault-plugin)
 
-- `configuration` (optional)
+- `configuration` (옵션)
   → `configuration`의 각 변수는 Jenkins에서 설정한 Vault Plugin global 설정 값보다 높은 우선순위를 가짐
   - `engineVersion : int` - KV 엔진 버전 지정 (미 지정 시 Vault Plugin Global 설정 값 사용)
   - `vaultCredentialId : String` - Jenkins Creds ID 지정 (미 지정 시 Vault Plugin Global 설정 값 사용)
   - `vaultNamespace : String` - Vault Namespace 지정 (미 지정 시 Vault Plugin Global 설정 값 사용)
   - `vaultUrl : String` - Vault 서버 URL 지정 (미 지정 시 Vault Plugin Global 설정 값 사용)
-- `vaultSecrets`
+- `vaultSecrets` (필수)
   - `path : String` - Vault KV 경로 지정
   - `secretValues`
     - `vaultKey : String` - Vault KV Key 값 지정
     - `envVar : String` - withVault 함수 내에서 사용할 환경 변수 명 지정
   - `engineVersion : int` - KV 엔진 버전 지정 (미 지정 시 configuration 설정 값 사용)
 
-```bash
+### Jenkins Pipeline에 적용
+
+```groovy
 pipeline {
     agent any
     stages {
@@ -229,12 +266,8 @@ pipeline {
                         vaultNamespace: 'jenkins'
                     ]
                     def secrets = [
-                        [
-                            path: 'kv/secret',
-                            secretValues: [
-                                [envVar: 'PASSWORD_ENV', vaultKey: 'password']
-                            ]
-                        ]
+                        [path: 'kv/secret', secretValues: [
+                            [envVar: 'PASSWORD_ENV', vaultKey: 'password']]]
                     ]
 
                     withVault([configuration: configuration, vaultSecrets: secrets]) {
@@ -253,35 +286,36 @@ pipeline {
 
 1. Script 아래에 있는 `Pipeline Syntax` 선택
 
-![Untitled 10](https://github.com/jslim1995/insideinfo-vault/assets/100335118/bc94ec72-dbed-41b1-a567-64c97ab19640)
+![Untitled 10](https://github.com/jslim1995/insideinfo-vault/assets/100335118/37b02329-29f3-46e8-9263-af64df95ffe5)
 
-2. Sample Step 설정
+1. Sample Step 설정
 
-`withVault: Vault Plugin` 선택
+   `withVault: Vault Plugin` 선택
 
-Vault Plugin
-- Vault URL : Vault Plugin Global 설정 값 사용
-- Vault Credential : 이전 단계에서 설정한 Jenkins Credential 지정
+   Vault Plugin
 
-![Untitled 11](https://github.com/jslim1995/insideinfo-vault/assets/100335118/5fe0fddf-8b44-4d60-a7ed-a685055e67ea)
+   - Vault URL : Vault Plugin Global 설정 값 사용
+   - Vault Credential : 이전 단계에서 설정한 Jenkins Credential 지정
 
-3. Advanced 설정
+![Untitled 11](https://github.com/jslim1995/insideinfo-vault/assets/100335118/f7624bde-5cfd-4f3e-a531-fb847fb8d9dc)
 
- `Advanced` 클릭 후 Vault Namespace : `jenkins` 지정
+1. Advanced 설정
 
-![Untitled 12](https://github.com/jslim1995/insideinfo-vault/assets/100335118/e781f6ba-99fe-4a82-addb-63a4937f6a27)
+   `Advanced` 클릭 후 Vault Namespace : `jenkins` 지정
 
-4. Vault Secret 설정
+![Untitled 12](https://github.com/jslim1995/insideinfo-vault/assets/100335118/274c38ad-c489-45ae-8450-d56bc7ea2836)
 
-`Vault Secret Path`, `Evironment Variable` 및 `Key name` 지정
+1. Vault Secret 설정
 
-![Untitled 13](https://github.com/jslim1995/insideinfo-vault/assets/100335118/a9c9b6e1-8483-455a-9834-57480a4de3a8)
+   `Vault Secret Path`, `Evironment Variable` 및 `Key name` 지정
 
-5. 하단의 `Generate Pipeline Script` 클릭하여 withVault 함수 값 확인
+![Untitled 13](https://github.com/jslim1995/insideinfo-vault/assets/100335118/c3d0ec2e-2f97-4aff-82d0-b6725051eccc)
 
-![Untitled 14](https://github.com/jslim1995/insideinfo-vault/assets/100335118/6ff02e70-54fc-4e9d-8e9e-317618628f2b)
+1. 하단의 `Generate Pipeline Script` 클릭하여 withVault 함수 값 확인
 
-6. Jenkins Pipeline에 적용
+![Untitled 14](https://github.com/jslim1995/insideinfo-vault/assets/100335118/7836d952-b9cd-4dfb-8a53-0be64dce0e8e)
+
+1. Jenkins Pipeline에 적용
 
 ```bash
 pipeline {
@@ -305,14 +339,14 @@ pipeline {
 
 생성한 pipline을 빌드 실행
 
-![Untitled 15](https://github.com/jslim1995/insideinfo-vault/assets/100335118/1d1cd4e8-12ec-41dc-a527-c4e5fc524af0)
+![Untitled 15](https://github.com/jslim1995/insideinfo-vault/assets/100335118/5407a918-67d0-4282-8396-8978d2b476a2)
 
 ### 빌드 결과 확인
 
 Logs를 클릭하여 Stage Logs 확인
 
-![Untitled 16](https://github.com/jslim1995/insideinfo-vault/assets/100335118/dc18458b-8420-4e07-9950-5e1bf16ca4db)
+![Untitled 16](https://github.com/jslim1995/insideinfo-vault/assets/100335118/d4c23331-49ab-4dff-91da-b8c3f5d45b0b)
 
 jenkins 서버에 생성된 `/tmp/kv-read-result.txt` 파일 확인
 
-![Untitled 17](https://github.com/jslim1995/insideinfo-vault/assets/100335118/7831bfec-e5c6-47f2-8349-ab872736bac1)
+![Untitled 17](https://github.com/jslim1995/insideinfo-vault/assets/100335118/52d2c8e6-ab34-4af3-b041-a9ab54240f80)
