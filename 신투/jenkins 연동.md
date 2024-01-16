@@ -177,6 +177,12 @@ jenkins 관리 - System Configuration - System
 
 Vault URL : `http://15.222.62.110:8200`
 
+Vault Credential : Script의 configuration에서 구성
+
+Vault Namespace : Script의 configuration에서 구성
+
+K/V Engine Version : 2 (기본 값)
+
 설정 후 저장
 
 ## Pipline 생성
@@ -251,7 +257,11 @@ pipeline {
 
 2. Sample Step 설정
 
-`withVault: Vault Plugin` 선택 후 Vault Plugin - Vault Credential 설정
+`withVault: Vault Plugin` 선택
+
+Vault Plugin
+- Vault URL : Vault Plugin Global 설정 값 사용
+- Vault Credential : 이전 단계에서 설정한 Jenkins Credential 지정
 
 ![Untitled 11](https://github.com/jslim1995/insideinfo-vault/assets/100335118/5fe0fddf-8b44-4d60-a7ed-a685055e67ea)
 
