@@ -725,7 +725,7 @@ spec:
 
 ![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/8912280e-8556-42a7-9a06-3626212dbfa0)
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/87193a66-fe07-4983-ba58-a901d0a86d1b)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/163b197c-7f99-42df-b40c-5affa99b213b)
 
 - **[Argocd] Application : vault-myapp 생성 확인**
 
