@@ -76,13 +76,14 @@ a0d52df0e3e0344c3944789df28aeb7b-1139286844.ap-southeast-1.elb.amazonaws.com
 # Argocd UI : Settings > Repositories > CONNECT REPO
 ```
 
-- **ArgoCD - UI : Settings>Repositories**
+- **ArgoCD - UI : Settings > Repositories > CONNECT REPO**
 
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/61a64d95-a2da-47a4-9cfc-0b600591378e/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/dac30052-ded3-437b-915e-283bfef9b846)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/0cfbece7-c80d-4174-b089-ed4b6b8e2ed5/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/5e7cbf6c-6a41-457b-bcec-9ab0056c34f5)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/b06d237a-7d99-4bcb-afaf-79e4bf97788b/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/59103e9a-4337-4b3a-8dd0-22b9f5c8d3f1)
+
 
 - (참고) ArgoCD - CLI
 
@@ -125,9 +126,9 @@ a0d52df0e3e0344c3944789df28aeb7b-1139286844.ap-southeast-1.elb.amazonaws.com
 
   : {repository}/argocd-vault-plugin-1.14.0/arogcd-vault-plugin
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/1b7c40ee-9c85-4893-b97d-ef2b6a1c0796/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/86c8686d-2b47-47cc-9a29-a34f3cdb0d24)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/1acb73bf-75db-49d2-9046-a910ffccf3fc/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/7fb18c32-7aa8-4d46-bdae-37a52ba24a78)
 
 
 
@@ -344,15 +345,17 @@ type: Opaque
 
 ## 6. **Argocd 작업 : Vault Auth 정보 K8s Secret 배포 Application 생성**
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/bfc08dc0-60f1-4c07-8753-99c84aa2723e>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/39e23a58-0859-437e-a9e4-5390f7518961)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/552d6fa1-5e68-495d-ba74-2519919b78e6/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/16d47bc2-7a10-4e0b-b4b7-7224d3a2b7a9)
+
 
 - **[Argocd] Application : vault-creds 생성 확인**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/1d8d1b17-f12b-4922-9c56-b379b2713592/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/143f8599-52d5-4c6a-8796-caa278f8fa18)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/961ea6b3-48d2-41ff-ba70-b74c0b2b5257/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/a644a368-8c27-4c9e-a292-6628b13a8677)
+
 
 - **[Kubernetes]에서 Applications 및 Kubernetes Secret (argocd-vault-plugin-credentials) 생성 확인**
 
@@ -588,9 +591,9 @@ Events:  <none>
 
 - **[GitLab]** arogcd-vault-plugin 파일 확인
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/1b7c40ee-9c85-4893-b97d-ef2b6a1c0796/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/86c8686d-2b47-47cc-9a29-a34f3cdb0d24)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/1acb73bf-75db-49d2-9046-a910ffccf3fc/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/7fb18c32-7aa8-4d46-bdae-37a52ba24a78)
 
 - **[Kubernetes] Deployment Argocd-Repo-Server 수정 : arogcd-vault-plugin 추가**
 
