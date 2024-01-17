@@ -59,7 +59,7 @@ EOF
 
 Project ID : `4`
 
-![Untitled](https://github.com/jslim1995/insideinfo-vault/assets/100335118/7e38d22d-5145-4a1c-8ebf-7958b50f3537)
+![Untitled](https://github.com/jslim1995/insideinfo-vault/assets/100335118/b84f68e8-b11d-43c9-b1b6-fe749d9693c5)
 
 ### claim 목록
 
@@ -79,17 +79,19 @@ Project → Settings → CI/CD → Variables 에서 환경 변수 추가
 
 VAULT_ADDR : `http://15.222.62.110:8200`
 
-![Untitled 1](https://github.com/jslim1995/insideinfo-vault/assets/100335118/ef2e84f8-932e-4f66-96f9-ca99d80dda70)
+![Untitled 1](https://github.com/jslim1995/insideinfo-vault/assets/100335118/d226d895-d2db-407b-bf0b-e24b4c267a0d)
 
-## pipeline 구성
+## pipeline 구성 및 빌드
 
-GitLab Pipeline에서 `JWT`를 발급 받고 script에서 `Vault command`혹은 `Vault API`를 사용하여 `Vault JWT Auth`로 로그인하여 `Vault Token`을 발급 받은 후 `Vault KV` 값을 가져오거나, GitLab에서 제공하는 `secrets:vault`를 통해 Vault KV 값을 가져올 수 있다.
+GitLab Project → Build → Pipeline Editor 에서 Pipeline 구성
 
-단, `secrets:vault`는 GitLab License 필요
+GitLab Pipeline에서 `JWT`를 발급 받고 `script` 블록에서 `Vault command`혹은 `Vault API`를 사용하여 `Vault JWT Auth`로 로그인하여 `Vault Token`을 발급 받은 후 `Vault KV` 값을 가져오거나, GitLab에서 제공하는 `secrets:vault`를 통해 Vault KV 값을 가져올 수 있다.
+
+단, `secrets:vault`는 GitLab License 필요([https://docs.gitlab.com/ee/ci/yaml/index.html#secrets](https://docs.gitlab.com/ee/ci/yaml/index.html#secrets))
 
 ### 1. Vault Command 사용
 
-Pipeline에서 JWT를 발급 받아 script 블록에서 Vault Command를 사용하여 Vault 토큰 발급 및 Vault KV 값 조회
+Pipeline에서 `JWT`를 발급 받아 `script` 블록에서 `Vault Command`를 사용하여 Vault 토큰 발급 및 `Vault KV` 값 조회
 
 사용 조건 (택 1)
 
@@ -99,10 +101,10 @@ Pipeline에서 JWT를 발급 받아 script 블록에서 Vault Command를 사용�
 [OpenID Connect (OIDC) Authentication Using ID Tokens | GitLab](https://docs.gitlab.com/ee/ci/secrets/id_token_authentication.html#manual-id-token-authentication)
 
 ```yaml
-## Vault Command 사용
+## Vault Command 사용 (Runner excutor:shell)
 ## https://docs.gitlab.com/ee/ci/secrets/id_token_authentication.html#manual-id-token-authentication
-vault_jwt:
-  image: hashicorp/vault             # Vault 이미지 지정 / excutor : shell 설정일 경우 주석 처리
+vault_command:
+  # image: hashicorp/vault             # Vault 이미지 지정 / excutor : shell 설정일 경우 주석 처리
   stage: test
   variables:                         # 환경변수 지정
     # VAULT_ADDR: http://15.222.62.110:8200 # CI/CD 환경 변수 값 사용
@@ -118,13 +120,17 @@ stages:
   - test
 ```
 
+![Untitled 2](https://github.com/jslim1995/insideinfo-vault/assets/100335118/3ec78426-ac1a-4140-8a38-1bff6a25a6d0)
+
 ### 2. Vault API 사용
 
-Pipeline에서 JWT를 발급 받아 script 블록에서 Vault API를 사용하여 Vault 토큰 발급 및 Vault KV 값 조회
+Pipeline에서 `JWT`를 발급 받아 `script` 블록에서 `Vault API`를 사용하여 Vault 토큰 발급 및 `Vault KV` 값 조회
+
+[OpenID Connect (OIDC) Authentication Using ID Tokens | GitLab](https://docs.gitlab.com/ee/ci/secrets/id_token_authentication.html#manual-id-token-authentication)
 
 ```yaml
 ## API 사용 시
-vault_jwt:
+vault_api:
   stage: test
   variables:                                # 환경변수 지정
     # VAULT_ADDR: http://15.222.62.110:8200 # CI/CD 환경 변수 값 사용
@@ -140,9 +146,13 @@ stages:
   - test
 ```
 
+![Untitled 3](https://github.com/jslim1995/insideinfo-vault/assets/100335118/78e9625c-d1c4-4c8f-9779-7459a73b7728)
+
 ### 3. GitLab secrets:vault 사용
 
-Pipeline에서 JWT를 발급 받아 `secrets:vault`를 사용하여 Vault 토큰 발급 및 Vault KV 값 조회
+Pipeline에서 `JWT`를 발급 받아 `secrets:vault`를 사용하여 Vault 토큰 발급 및 `Vault KV` 값을 조회하여 환경 변수에 저장
+
+환경 변수에 저장된 `Vault KV` 값은 마스킹 처리
 
 사용 조건 : GitLab License 필요
 
@@ -153,7 +163,7 @@ Pipeline에서 JWT를 발급 받아 `secrets:vault`를 사용하여 Vault 토큰
 ```yaml
 ## GitLab License가 있을 경우 사용 가능
 ## https://docs.gitlab.com/ee/ci/yaml/index.html#secretsvault
-job:
+secrets_vault:
   stage: test
   variables:                         # 환경변수 지정
     VAULT_SERVER_URL: http://15.222.62.110:8200
@@ -183,21 +193,19 @@ stages:
   - test
 ```
 
-### job 확인
-
-![Untitled 2](https://github.com/jslim1995/insideinfo-vault/assets/100335118/c42f056a-711d-47b3-867f-f2c410f834c1)
+![Untitled 4](https://github.com/jslim1995/insideinfo-vault/assets/100335118/2bf522bb-4024-4c42-912e-720bced35a6b)
 
 # 참고
 
-### ****Manual ID Token authentication****
+### Manual ID Token authentication
 
 [OpenID Connect (OIDC) Authentication Using ID Tokens | GitLab](https://docs.gitlab.com/ee/ci/secrets/id_token_authentication.html#manual-id-token-authentication)
 
-### ****HashiCorp Vault authentication****
+### HashiCorp Vault authentication
 
 [Authenticating and reading secrets with HashiCorp Vault | GitLab](https://docs.gitlab.com/ee/ci/examples/authenticating-with-hashicorp-vault/)
 
-### ****Tutorial****
+### Tutorial
 
 [Tutorial: Update HashiCorp Vault configuration to use ID Tokens | GitLab](https://docs.gitlab.com/ee/ci/secrets/convert-to-id-tokens.html)
 
