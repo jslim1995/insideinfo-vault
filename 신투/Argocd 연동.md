@@ -721,7 +721,7 @@ spec:
 
 ![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/9b3478c3-8046-466e-b531-44e293eb8a1d)
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/af5399d1-9e48-4715-8c1c-07ab619d3705)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/6ec98a8c-9618-49f5-b826-15e772e482c4)
 
 ![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/11e89d95-73af-4e42-a149-a9eaeafda8b5)
 
