@@ -729,7 +729,7 @@ spec:
 
 - **[Argocd] Application : vault-myapp 생성 확인**
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/34cfa499-ad1d-4635-adb9-91f7f447327c)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/8e2f6c16-1e64-40c2-85b9-b04f231a200a)
 
 - **[Kubernetes] Secret : Argocd application 및 Pod (vault-kv2-pod) Environment 확인**
 
