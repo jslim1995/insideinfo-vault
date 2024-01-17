@@ -719,17 +719,17 @@ spec:
 
 - **[Argocd] Application : vault-myapp 생성 시, Plugin 선택**
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/041d8cef-e76d-4ab7-bb5d-ce04dca36517>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/0ef6ac55-5283-41ea-b2f8-85a402f28be9)
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/7dbbfa9b-d1e9-47f7-a6d0-65d1fc36d5c3>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/0f7a2147-093f-4c1a-87f0-461704dc6f8c)
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/17f54bf4-6b23-49e8-9c1c-cea6ffb1515a>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/e04ec6b5-db0e-4af3-86ca-983625e004e1)
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/48994e11-533c-4d8a-ad62-e9fa1ba9f6b2>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/2a263cf4-0a0c-4cd6-a72b-5ff4f9345ee6)
 
 - **[Argocd] Application : vault-myapp 생성 확인**
 
-<https://github.com/jslim1995/insideinfo-vault/assets/100335118/0b661004-63f2-4cf9-ad46-e6ccba2b3f9b>
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/34cfa499-ad1d-4635-adb9-91f7f447327c)
 
 - **[Kubernetes] Secret : Argocd application 및 Pod (vault-kv2-pod) Environment 확인**
 
