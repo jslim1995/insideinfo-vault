@@ -132,7 +132,7 @@ a0d52df0e3e0344c3944789df28aeb7b-1139286844.ap-southeast-1.elb.amazonaws.com
 
 
 
-## 4. **Vault 작업 : KV 저장 및 Token 발급**
+## 4. Vault 작업 : KV 저장 및 Token 발급
 
 **(1) KV 구성**
 
@@ -315,7 +315,7 @@ policies             ["default"]
 
 
 
-## 5. **GitLab 작업 : Vault Auth 정보 저장**
+## 5. GitLab 작업 : Vault Auth 정보 저장
 
 - **Kubernetes Secret 정의**
 
@@ -343,7 +343,7 @@ type: Opaque
 
 
 
-## 6. **Argocd 작업 : Vault Auth 정보 K8s Secret 배포 Application 생성**
+## 6. Argocd 작업 : Vault Auth 정보 K8s Secret 배포 Application 생성
 
 ![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/39e23a58-0859-437e-a9e4-5390f7518961)
 
@@ -409,7 +409,7 @@ hvs.CAESIO7juMmTJfSBOsERXu_CSXMK-7J5g6cNj13CI0mYjvjsGicKImh2cy5WRVlNeldwdk1xc2JS
 
 
 
-## 7**. Kubernetes 작업 : Rolebinding 생성**
+## 7. Kubernetes 작업 : Rolebinding 생성
 
 위에서 생성한 'Secret: argocd-vault-plugin-credentials'를 읽을 수 있는 Role 생성하여 'ServiceAccount:argocd-repo-server'에 적용
 
@@ -494,7 +494,7 @@ Subjects:
 
 
 
-## 8. **Kubernetes 작업 : Arogcd-Vault-Plugin 정의**
+## 8. Kubernetes 작업 : Arogcd-Vault-Plugin 정의
 
 ```yaml
 # 1. ConfigMap: cmp-plugin 작성
@@ -587,7 +587,7 @@ Events:  <none>
 
 
 
-## 9. **Kubernetes 작업 : Arogcd-Vault-Plugin 생성**
+## 9. Kubernetes 작업 : Arogcd-Vault-Plugin 생성
 
 - **[GitLab]** arogcd-vault-plugin 파일 확인
 
@@ -683,7 +683,7 @@ argocd-vault-plugin argocd-repo-server
 
 
 
-## 10. **GitLab 작업 :** Pod 생성 YAML 저장
+## 10. GitLab 작업 : Pod 생성 YAML 저장
 
 : Pod의 env에 vault secret 연동
 
@@ -714,7 +714,7 @@ spec:
 
 
 
-## 11. **Argocd 작업 : Pod 배포 Application 생성**
+## 11. Argocd 작업 : Pod 배포 Application 생성
 
 - **[Argocd] Application : vault-myapp 생성 시, Plugin 선택**
 
