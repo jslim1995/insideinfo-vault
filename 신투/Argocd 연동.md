@@ -719,13 +719,13 @@ spec:
 
 - **[Argocd] Application : vault-myapp 생성 시, Plugin 선택**
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/0ef6ac55-5283-41ea-b2f8-85a402f28be9)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/9b3478c3-8046-466e-b531-44e293eb8a1d)
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/0f7a2147-093f-4c1a-87f0-461704dc6f8c)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/af5399d1-9e48-4715-8c1c-07ab619d3705)
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/e04ec6b5-db0e-4af3-86ca-983625e004e1)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/11e89d95-73af-4e42-a149-a9eaeafda8b5)
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/2a263cf4-0a0c-4cd6-a72b-5ff4f9345ee6)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/87193a66-fe07-4983-ba58-a901d0a86d1b)
 
 - **[Argocd] Application : vault-myapp 생성 확인**
 
