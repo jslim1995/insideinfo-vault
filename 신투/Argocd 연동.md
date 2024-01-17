@@ -345,7 +345,7 @@ type: Opaque
 
 ## 6. Argocd 작업 : Vault Auth 정보 K8s Secret 배포 Application 생성
 
-![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/0d4befce-c209-4f75-98b0-bf4d2d73bf32)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/51d36779-2bbf-4a3f-8b85-6337aaa65b22)
 
 ![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/2035722f-76a6-4081-b231-7b68766220c2)
 
