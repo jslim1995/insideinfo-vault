@@ -184,12 +184,13 @@ namespace/app created
 
 # 2. Service Account 2 : 'app/vso-account' YAML 작성
 # kubernetes에서 vso 통해 vault kv 접근 시, vault kubernetes auth를 위해 사용
-tee sa-vso-account.yaml 
+tee sa-vso-account.yaml <<EOF
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: vso-account
   namespace: app
+EOF
 
 # 2-1. 'app/vso-account' 생성
 kubectl apply -f sa-vso-account.yaml
@@ -458,12 +459,12 @@ metadata:
   namespace: app
   name: vaultauth
 spec:
-  vaultConnectionRef: vault-connection	# 위에서 생성한 VaultConnection 이름
-  method: kubernetes	# Vault auth mehtod 타입 지정
-  mount: kubernetes		# Vault auth mehtod 활성화한 path 지정
+  vaultConnectionRef: "vault-connection"	# 위에서 생성한 VaultConnection 이름
+  method: "kubernetes"	# Vault auth mehtod 타입 지정
+  mount: "kubernetes"		# Vault auth mehtod 활성화한 path 지정
   kubernetes:
-    role: vsoperator	# Vault Kubernetes Auth의 Role 이름 지정
-    serviceAccount: vso-account	# Kubernetes Role에 연결된 Service account 지정 
+    role: "vsoperator"	# Vault Kubernetes Auth의 Role 이름 지정
+    serviceAccount: "vso-account"	# Kubernetes Role에 연결된 Service account 지정 
   namespace: "shinhan"	# Vault Kubernetes Auth 활성화된 namespace 지정
 EOF
 
