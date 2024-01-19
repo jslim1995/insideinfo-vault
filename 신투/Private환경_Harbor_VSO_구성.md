@@ -494,10 +494,7 @@ admin
 Harbor12345
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/9e03d934-67af-4c10-9e77-8d75a6ebb15c/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/d3f4bb42-de38-467e-a4f8-4bb6a172e907/Untitled.png)
-
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/d80ae04e-27ab-4d9a-aa10-6b86aef6257d)
 
 
 
@@ -506,9 +503,10 @@ Harbor12345
 
 **(1) Harbor Projects 확인**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/42b32641-4dc4-4285-9ecf-9deb4bfabd3b/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/1c5a9291-2ef6-4a59-a953-5bd630c2e867)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/10b6526f-a253-4d0d-a0ed-25fdba622c7a/Untitled.png)
+
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/c9396a03-a56e-47f0-b48e-a52d4d56e8e6)
 
 
 
@@ -531,8 +529,6 @@ sudo cp ./ca.crt /etc/docker/certs.d/harbor.inside-vault.com/ca.crt
 ```
 
 **(3) Harbor에 Docker image Push**
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/4ef34845-dbaa-4d4f-9b1d-0539eaf9df4e/Untitled.png)
 
 ```bash
 # 1. Docker Image 압축 파일 목록
@@ -644,21 +640,18 @@ accc3e6808c0: Pushed
 
 **(4) Harbor 확인 : Projects > library**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/bb5fd265-9dd8-4627-8f09-4f93a56ab723/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/98537e42-ae0d-476b-97a3-f703330952e1)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/95b8d8e8-9122-428a-9eb3-c7e914d61ae7/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/00b117b6-c360-46d5-b62f-6bfd90878432)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/53ea0bcf-95dd-41e0-af97-c72339a9402f/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/779b758e-72a7-47b5-9753-dbdbbec52607)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/47c9a393-45a6-46b8-aef0-e5281f915761/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/7b9a612c-8790-4e1b-a0c7-f8e765acb3e9/Untitled.png)
 
 
 
 **(5) AWS : S3 Bucket 객체 ‘Bucket/docker/registry/…’ 생성 확인**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/c0967b98-7ff5-4036-ac9a-6384d209fdc9/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/ba968219-bd43-41b4-a82f-bdf424d79609)
 
 
 
@@ -859,7 +852,10 @@ Login Succeeded
 
 - Harbor : Projects 확인 (vso_chart 생성)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/f6612183-4dad-497d-98d9-03dad792e3ca/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/eade9d40-fd4d-4b2a-a79c-c4f5305b26df)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/1396b48f-aaea-4eee-89e7-72876c6645a1)
+
+
 
 - **인증서 등록**
 
@@ -921,11 +917,14 @@ drwxrwxr-x 3 ec2-user ec2-user  4096 Jan 19 03:38 templates
 ```
 
 - **Harbor 확인**
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/ef162232-238d-429b-9128-35ca554c3fa6)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/3736430c-96c4-4c1b-872c-d9def85e5e49/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/860dee4d-bed4-4b7b-911c-3fe7ffd68da0)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00d021b0-8d19-4bbc-b4a1-bd72e39f8531/c3977d03-238e-4999-be08-060ee5dab526/Untitled.png)
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/7a1a1684-61a4-4d90-a181-bc0b2ae012fb)
 
+- **AWS S3 확인**
+![image](https://github.com/jslim1995/insideinfo-vault/assets/124943887/8ced7438-ed60-4e25-a261-1cb40045ea55)
 
 
 **(3-1) Pulling Helm Charts : harbor에 저장된 Chart 다운로드 후 설치 수행**
